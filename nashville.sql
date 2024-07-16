@@ -9,25 +9,26 @@ USE nashville_db;
 -- Apache Spark: Create a JOB to Extract data from excel file into the nashville_db table -- Big Data
 
 -- Create table as per the data info from df in python script
+-- There are some null values in the dataset. Let's add default NULL to avoid errors
 
 CREATE TABLE nashville(
-    UniqueID INT,
-    ParcelID VARCHAR(255),
-    LandUse VARCHAR(255),
-    PropertyAddress VARCHAR(255),
-    SaleDate DATE,
-    SalePrice INT,
-    LegalReference VARCHAR(255),
-    SoldAsVacant VARCHAR(255),
-    OwnerName VARCHAR(255),
-    OwnerAddress VARCHAR(255),
-    Acreage FLOAT,
-    TaxDistrict VARCHAR(255),
-    LandValue FLOAT,
-    BuildingValue FLOAT,
-    TotalValue FLOAT,
-    YearBuilt FLOAT,
-    Bedrooms FLOAT,
-    FullBath FLOAT,
-    HalfBath FLOAT
-)
+    UniqueID INT DEFAULT NULL,
+    ParcelID VARCHAR(255) DEFAULT NULL,
+    LandUse VARCHAR(255) DEFAULT NULL,
+    PropertyAddress VARCHAR(255) DEFAULT NULL,
+    SaleDate DATE DEFAULT NULL,
+    SalePrice INT DEFAULT NULL,
+    LegalReference VARCHAR(255) DEFAULT NULL,
+    SoldAsVacant VARCHAR(255) DEFAULT NULL,
+    OwnerName VARCHAR(255) DEFAULT NULL,
+    OwnerAddress VARCHAR(255) DEFAULT NULL,
+    Acreage FLOAT DEFAULT NULL,
+    TaxDistrict VARCHAR(255) DEFAULT NULL,
+    LandValue FLOAT DEFAULT NULL,
+    BuildingValue FLOAT DEFAULT NULL,
+    TotalValue FLOAT DEFAULT NULL,
+    YearBuilt FLOAT DEFAULT NULL,
+    Bedrooms FLOAT DEFAULT NULL,
+    FullBath FLOAT DEFAULT NULL,
+    HalfBath FLOAT DEFAULT NULL
+);
