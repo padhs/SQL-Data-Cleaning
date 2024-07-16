@@ -6,11 +6,26 @@ import numpy as np
 
 
 # load the dataset into pandas pd
-df = pd.read_excel('./dataset/Nashville Housing Data for Data Cleaning.xlsx')
+df = pd.read_excel('./dataset/Nashville Housing Data for cleaning no NULLS.xlsx')
 print(df.info())
 # we get the columns and their datatypes it will be helpful while creating the table
 
+# handling nulls:
+categorical_columns = [column for column in df.columns if df[column].dtype == object]
+numerical_columns = [column for column in df.columns if df[column].dtype == np.float64]
+
+print(categorical_columns)
+for cat_col in categorical_columns:
+    df[cat_col].replace(to_replace=np.nan, value='NULL', inplace=True)
+
+for num_col in numerical_columns:
+    df[num_col].replace(to_replace=np.nan, value=0, inplace=True)
+
+# check for any nulls ? Success --> No nulls remaining ---> proceed to SQL Data Cleaning
+print(df.info())
+
 # establish connection to mysql db:
+'''
 connection = mysql.connector.connect(
     host='localhost',
     user='root',
@@ -18,6 +33,7 @@ connection = mysql.connector.connect(
     database='nashville_db'
 )
 cursor = connection.cursor()
+'''
 
 # Insert data into table from excel:
 '''
@@ -36,9 +52,8 @@ for start in range(0, len(data), batch_size):
     INSERT INTO nashville (UniqueID, ParcelID, LandUse, PropertyAddress, SaleDate, SalePrice, LegalReference, SoldAsVacant,
                            OwnerName, OwnerAddress, Acreage, TaxDistrict, LandValue, BuildingValue, TotalValue, YearBuilt, 
                            Bedrooms, FullBath, HalfBath)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
-
     cursor.executemany(insert_query, batch)
     connection.commit()
 # error: Some values have NaN. MySQL can't handle NaN values. So we need to handle those values before importing data.

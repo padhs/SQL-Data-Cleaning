@@ -12,14 +12,14 @@ USE nashville_db;
 -- There are some null values in the dataset. Let's add default NULL to avoid errors
 
 CREATE TABLE nashville(
-    UniqueID INT DEFAULT NULL,
-    ParcelID VARCHAR(255) DEFAULT NULL,
-    LandUse VARCHAR(255) DEFAULT NULL,
+    UniqueID INT NOT NULL,
+    ParcelID VARCHAR(255) NOT NULL,
+    LandUse VARCHAR(255),
     PropertyAddress VARCHAR(255) DEFAULT NULL,
-    SaleDate DATE DEFAULT NULL,
-    SalePrice INT DEFAULT NULL,
-    LegalReference VARCHAR(255) DEFAULT NULL,
-    SoldAsVacant VARCHAR(255) DEFAULT NULL,
+    SaleDate DATE,
+    SalePrice INT,
+    LegalReference VARCHAR(255),
+    SoldAsVacant VARCHAR(255),
     OwnerName VARCHAR(255) DEFAULT NULL,
     OwnerAddress VARCHAR(255) DEFAULT NULL,
     Acreage FLOAT DEFAULT NULL,

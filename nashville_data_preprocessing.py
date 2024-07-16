@@ -22,3 +22,5 @@ for num_col in numerical_columns:
 
 # check for any nulls ? Success --> No nulls remaining ---> proceed to SQL Data Cleaning
 print(df.info())
+
+df.to_excel('./dataset/Nashville Housing Data for cleaning no NULLS.xlsx', index=False)
