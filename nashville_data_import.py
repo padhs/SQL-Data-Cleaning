@@ -11,21 +11,29 @@ print(df.info())
 # we get the columns and their datatypes it will be helpful while creating the table
 
 # handling nulls:
+'''
 categorical_columns = [column for column in df.columns if df[column].dtype == object]
 numerical_columns = [column for column in df.columns if df[column].dtype == np.float64]
 
 print(categorical_columns)
 for cat_col in categorical_columns:
-    df[cat_col].replace(to_replace=np.nan, value='NULL', inplace=True)
+    df[cat_col].replace(to_replace=np.nan, value=None, inplace=True)
 
 for num_col in numerical_columns:
-    df[num_col].replace(to_replace=np.nan, value=0, inplace=True)
+    df[num_col].replace(to_replace=np.nan, value=None, inplace=True)
+'''
+
+
+# handling nulls:
+for with_nulls in df.columns:
+    df[with_nulls].replace(to_replace=np.nan, value=None, inplace=True)
 
 # check for any nulls ? Success --> No nulls remaining ---> proceed to SQL Data Cleaning
+df.convert_dtypes()
 print(df.info())
 
 # establish connection to mysql db:
-'''
+
 connection = mysql.connector.connect(
     host='localhost',
     user='root',
@@ -33,7 +41,6 @@ connection = mysql.connector.connect(
     database='nashville_db'
 )
 cursor = connection.cursor()
-'''
 
 # Insert data into table from excel:
 '''
@@ -65,3 +72,5 @@ connection.close()
 end_time = time.time()
 print(f"Time Taken: {end_time - start_time} seconds")
 # Check in MySQL workbench if data was successfully imported
+
+# Cool we have successfully migrated data from the excel file to the MySQL db.

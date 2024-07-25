@@ -15,12 +15,12 @@ numerical_columns = [column for column in df.columns if df[column].dtype == np.f
 
 print(categorical_columns)
 for cat_col in categorical_columns:
-    df[cat_col].replace(to_replace=np.nan, value='NULL', inplace=True)
+    df[cat_col].replace(to_replace=np.nan, value=None, inplace=True)
 
 for num_col in numerical_columns:
-    df[num_col].replace(to_replace=np.nan, value=0, inplace=True)
+    df[num_col].replace(to_replace=np.nan, value=None, inplace=True)
 
 # check for any nulls ? Success --> No nulls remaining ---> proceed to SQL Data Cleaning
 print(df.info())
 
-df.to_excel('./dataset/Nashville Housing Data for cleaning no NULLS.xlsx', index=False)
+# df.to_excel('./dataset/Nashville Housing Data for cleaning no NULLS.xlsx', index=False)

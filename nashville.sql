@@ -24,11 +24,14 @@ CREATE TABLE nashville(
     OwnerAddress VARCHAR(255) DEFAULT NULL,
     Acreage FLOAT DEFAULT NULL,
     TaxDistrict VARCHAR(255) DEFAULT NULL,
-    LandValue FLOAT DEFAULT NULL,
-    BuildingValue FLOAT DEFAULT NULL,
-    TotalValue FLOAT DEFAULT NULL,
-    YearBuilt FLOAT DEFAULT NULL,
-    Bedrooms FLOAT DEFAULT NULL,
-    FullBath FLOAT DEFAULT NULL,
-    HalfBath FLOAT DEFAULT NULL
+    LandValue INT DEFAULT NULL,
+    BuildingValue INT DEFAULT NULL,
+    TotalValue INT DEFAULT NULL,
+    YearBuilt INT DEFAULT NULL,
+    Bedrooms INT DEFAULT NULL,
+    FullBath INT DEFAULT NULL,
+    HalfBath INT DEFAULT NULL
 );
+
+-- Better way: create table in python script after all modifications of dataset and dynamically program dtypes.
+
