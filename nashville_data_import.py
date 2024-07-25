@@ -6,7 +6,7 @@ import numpy as np
 
 
 # load the dataset into pandas pd
-df = pd.read_excel('./dataset/Nashville Housing Data for cleaning no NULLS.xlsx')
+df = pd.read_excel('./dataset/Nashville Housing Data for Data Cleaning.xlsx')
 print(df.info())
 # we get the columns and their datatypes it will be helpful while creating the table
 
@@ -22,7 +22,6 @@ for cat_col in categorical_columns:
 for num_col in numerical_columns:
     df[num_col].replace(to_replace=np.nan, value=None, inplace=True)
 '''
-
 
 # handling nulls:
 for with_nulls in df.columns:
@@ -73,4 +72,6 @@ end_time = time.time()
 print(f"Time Taken: {end_time - start_time} seconds")
 # Check in MySQL workbench if data was successfully imported
 
-# Cool we have successfully migrated data from the excel file to the MySQL db.
+'''
+Cool. We have successfully migrated data from excel file to MySQL db.
+'''
