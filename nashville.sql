@@ -35,3 +35,39 @@ CREATE TABLE nashville(
 
 -- Better way: create table in python script after all modifications of dataset and dynamically program dtypes.
 
+-- Data cleaning checklist:
+
+-- standardize date formats
+-- populate property address data
+-- break out address into city, state, etc.
+-- There are Yes, No, Y, N change to either Yes/No or Y/N format
+-- Remove duplicates
+-- Delete unused columns
+
+-- handling missing data: numerical: mean, mode, median || categorical: Random Sampling --> Better do this using Python.
+
+-- Eyeballing data
+SELECT *
+FROM nashville;
+
+-- standardize date formats: (Format: YYYY-MM-DD)
+-- They're already in the format we want. No need to change. No nulls
+SELECT nashville.UniqueID, nashville.SaleDate
+FROM nashville
+WHERE SaleDate IS NULL;
+
+-- populate PropertyAddress:
+SELECT nashville.UniqueID, nashville.PropertyAddress, nashville.OwnerName, nashville.OwnerAddress
+FROM nashville
+WHERE PropertyAddress IS NULL; -- COUNT: 29
+
+-- nulls in PropertyAddress: ==> should show 29 ==> success
+SELECT COUNT(*)
+FROM nashville
+WHERE PropertyAddress IS NULL;
+
+SELECT nashville.OwnerAddress, nashville.PropertyAddress
+FROM nashville
+WHERE PropertyAddress IS NULL;
+-- observation: OwnerAddress & PropertyAddress is same only OwnerAddress has ', TN' trailing substring.
+-- Solution: Copy value in OwnerAddress and remove the trailing substring. Then populate PropertyAddresster
